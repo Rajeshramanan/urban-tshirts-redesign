@@ -72,7 +72,7 @@ function CartDrawer() {
         <button className="button button--full-width" onClick={() => {
           setIsCartOpen(false);
           setIsCheckoutOpen(true);
-        }}>Check out via WhatsApp</button>
+        }}>CHECKOUT</button>
       </div>
     </div>
   );
