@@ -7,8 +7,20 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const DATA_FILE = path.join(__dirname, 'data.json');
-const ORDERS_FILE = path.join(__dirname, 'orders.json');
+const DATA_FILE = process.env.VERCEL ? path.join('/tmp', 'data.json') : path.join(__dirname, 'data.json');
+const ORDERS_FILE = process.env.VERCEL ? path.join('/tmp', 'orders.json') : path.join(__dirname, 'orders.json');
+
+if (process.env.VERCEL) {
+  try {
+    if (!fs.existsSync(DATA_FILE)) fs.copyFileSync(path.join(__dirname, 'data.json'), DATA_FILE);
+    if (!fs.existsSync(ORDERS_FILE)) {
+      if (fs.existsSync(path.join(__dirname, 'orders.json'))) fs.copyFileSync(path.join(__dirname, 'orders.json'), ORDERS_FILE);
+      else fs.writeFileSync(ORDERS_FILE, '[]');
+    }
+  } catch (e) {
+    console.log("Vercel tmp init error", e);
+  }
+}
 
 // --- Helper Functions ---
 function readData() {

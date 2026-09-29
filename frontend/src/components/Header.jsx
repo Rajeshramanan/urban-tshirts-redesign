@@ -3,7 +3,7 @@ import { useShop } from '../context/ShopContext';
 import { Link } from 'react-router-dom';
 
 function Header() {
-  const { cart, setIsCartOpen, theme, toggleTheme } = useShop();
+  const { cart, setIsCartOpen, theme, toggleTheme, setIsFilterOpen } = useShop();
   const [menuOpen, setMenuOpen] = useState(false);
   
   const cartCount = cart.reduce((acc, item) => acc + (item.qty || 1), 0);
@@ -48,6 +48,15 @@ function Header() {
         <nav className="nav-links" style={{ display: 'flex', flexDirection: 'column', background: 'var(--header-bg)', padding: '2rem', position: 'absolute', width: '100%', boxShadow: '0 10px 10px rgba(0,0,0,0.5)', zIndex: 100 }}>
           <ul className="list-menu" style={{ flexDirection: 'column' }}>
             <li><Link to="/" className="list-menu__item" onClick={() => setMenuOpen(false)}>Home</Link></li>
+            <li>
+              <button 
+                className="list-menu__item" 
+                style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', textAlign: 'left', width: '100%' }} 
+                onClick={() => { setMenuOpen(false); setIsFilterOpen(true); setTimeout(() => document.getElementById('shop')?.scrollIntoView({ behavior: 'smooth' }), 100); }}
+              >
+                Filter Products
+              </button>
+            </li>
             <li><Link to="/admin" className="list-menu__item" onClick={() => setMenuOpen(false)}>Admin Panel</Link></li>
           </ul>
         </nav>

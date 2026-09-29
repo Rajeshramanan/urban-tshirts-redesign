@@ -70,10 +70,9 @@ function ProductCard({ p }) {
 }
 
 function Home() {
-  const { products, comboSelection, addComboToCart } = useShop();
+  const { products, comboSelection, addComboToCart, isFilterOpen, setIsFilterOpen } = useShop();
   const [search, setSearch] = useState('');
   const [sort, setSort] = useState('featured');
-  const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState([]);
   const [selectedSizeFilter, setSelectedSizeFilter] = useState([]);
 

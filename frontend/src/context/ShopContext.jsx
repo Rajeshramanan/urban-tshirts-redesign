@@ -15,6 +15,7 @@ export const ShopProvider = ({ children }) => {
   const [isProductModalOpen, setIsProductModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [toastMessage, setToastMessage] = useState('');
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
   
   // Theme state: default to system preference if no localStorage value
   const [theme, setTheme] = useState(() => {
@@ -143,6 +144,7 @@ export const ShopProvider = ({ children }) => {
       cart, wishlist, comboSelection,
       isCartOpen, setIsCartOpen,
       isCheckoutOpen, setIsCheckoutOpen,
+      isFilterOpen, setIsFilterOpen,
       isProductModalOpen, openProductModal, closeProductModal, selectedProduct,
       toastMessage, showToast,
       theme, toggleTheme,
