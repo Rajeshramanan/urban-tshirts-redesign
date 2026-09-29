@@ -347,12 +347,73 @@ button {
 }
 
 .shop-sidebar {
-  position: static;
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: 75vw;
+  max-width: 320px;
+  height: 100vh;
+  background-color: var(--bg-primary);
+  z-index: 2000;
+  transition: left 0.3s ease;
+  padding: 2rem;
+  overflow-y: auto;
+  box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+}
+.shop-sidebar.active {
+  left: 0;
 }
 @media screen and (min-width: 750px) {
   .shop-sidebar {
     position: sticky;
     top: 10rem;
+    left: 0;
+    width: auto;
+    height: auto;
+    padding: 0;
+    z-index: 1;
+    box-shadow: none;
+    transition: none;
+    background-color: transparent;
+  }
+}
+
+.shop-sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.5);
+  z-index: 1999;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s;
+}
+.shop-sidebar-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+@media screen and (min-width: 750px) {
+  .shop-sidebar-overlay {
+    display: none;
+  }
+}
+
+.mobile-filter-btn {
+  display: flex;
+}
+@media screen and (min-width: 750px) {
+  .mobile-filter-btn {
+    display: none !important;
+  }
+}
+.mobile-filter-close {
+  display: block;
+}
+@media screen and (min-width: 750px) {
+  .mobile-filter-close {
+    display: none !important;
   }
 }
 

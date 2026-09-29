@@ -73,6 +73,7 @@ function Home() {
   const { products, comboSelection, addComboToCart } = useShop();
   const [search, setSearch] = useState('');
   const [sort, setSort] = useState('featured');
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState([]);
   const [selectedSizeFilter, setSelectedSizeFilter] = useState([]);
 
@@ -143,15 +144,28 @@ function Home() {
       </section>
 
       <section id="shop" className="page-width" style={{ marginBottom: '8rem' }}>
-        <div className="title-wrapper" style={{ borderBottom: '1px solid var(--border-color)', paddingBottom: '2rem' }}>
-          <h2 className="title">T-SHIRTS COLLECTION</h2>
-          <p style={{ color: 'var(--text-secondary)' }}>Elevate Your Vibe | Filter & Find Your Fit</p>
+        <div className="title-wrapper" style={{ borderBottom: '1px solid var(--border-color)', paddingBottom: '2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+          <div>
+            <h2 className="title">T-SHIRTS COLLECTION</h2>
+            <p style={{ color: 'var(--text-secondary)' }}>Elevate Your Vibe | Filter & Find Your Fit</p>
+          </div>
+          <button className="mobile-filter-btn button button--secondary button--small" onClick={() => setIsFilterOpen(true)} style={{ display: 'none' }}>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ width: '1.6rem', height: '1.6rem', marginRight: '0.5rem' }}><line x1="4" y1="21" x2="4" y2="14"></line><line x1="4" y1="10" x2="4" y2="3"></line><line x1="12" y1="21" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="3"></line><line x1="20" y1="21" x2="20" y2="16"></line><line x1="20" y1="12" x2="20" y2="3"></line><line x1="1" y1="14" x2="7" y2="14"></line><line x1="9" y1="8" x2="15" y2="8"></line><line x1="17" y1="16" x2="23" y2="16"></line></svg>
+            Filter
+          </button>
         </div>
         
         <div className="shop-layout">
+          <div className={`shop-sidebar-overlay ${isFilterOpen ? 'active' : ''}`} onClick={() => setIsFilterOpen(false)}></div>
+          
           {/* Sidebar Filter */}
-          <div className="shop-sidebar">
-            <h3 style={{ fontSize: '1.6rem', textTransform: 'uppercase', marginBottom: '2rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '1rem' }}>FILTER</h3>
+          <div className={`shop-sidebar ${isFilterOpen ? 'active' : ''}`}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '1rem' }}>
+              <h3 style={{ fontSize: '1.6rem', textTransform: 'uppercase', margin: 0 }}>FILTER</h3>
+              <button className="mobile-filter-close" onClick={() => setIsFilterOpen(false)} style={{ background: 'none', border: 'none', color: 'var(--text-primary)', cursor: 'pointer', display: 'none' }}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ width: '2.4rem', height: '2.4rem' }}><path d="M18 6L6 18M6 6l12 12"></path></svg>
+              </button>
+            </div>
             
             <div style={{ marginBottom: '2.5rem' }}>
               <label className="facet-filters__label">Search</label>
