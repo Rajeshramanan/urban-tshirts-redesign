@@ -12,7 +12,7 @@ export const PAYMENT_CONFIG = {
   PRODUCTION_API_URL: 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec',
   
   // Local Express endpoint (for order creation and demo verification)
-  LOCAL_API_URL: 'http://localhost:5000/api',
+  API_URL: '/api',
 
   // Merchant Details
   MERCHANT_UPI_ID: 'urbantshirts@upi',
@@ -31,7 +31,7 @@ export const PAYMENT_CONFIG = {
  */
 export const createOrder = async (customer, items, amount) => {
   try {
-    const response = await axios.post(`${PAYMENT_CONFIG.LOCAL_API_URL}/orders`, {
+    const response = await axios.post(`${PAYMENT_CONFIG.API_URL}/orders`, {
       customer,
       items,
       amount
@@ -51,7 +51,7 @@ export const verifyUTR = async (orderId, utr) => {
     // Both DEMO and PROD send the request to our local Express backend.
     // The Express backend acts as a secure middleware and forwards PROD requests 
     // to Google Apps script securely. (Configured in server.js)
-    const response = await axios.post(`${PAYMENT_CONFIG.LOCAL_API_URL}/verify-utr`, {
+    const response = await axios.post(`${PAYMENT_CONFIG.API_URL}/verify-utr`, {
       orderId,
       utr,
       isDemoMode: PAYMENT_CONFIG.DEMO_MODE

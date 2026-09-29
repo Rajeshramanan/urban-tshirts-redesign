@@ -18,10 +18,10 @@ function Admin() {
 
     try {
       if (editingId) {
-        await axios.put(`http://localhost:5000/api/products/${editingId}`, payload);
+        await axios.put(`/api/products/${editingId}`, payload);
         showToast('Product updated');
       } else {
-        await axios.post('http://localhost:5000/api/products', payload);
+        await axios.post('/api/products', payload);
         showToast('Product added');
       }
       setForm({ name: '', price: '', category: '', image: '', sizes: 'M, L, XL', badge: '' });
@@ -47,7 +47,7 @@ function Admin() {
   const handleDelete = async (id) => {
     if (window.confirm('Delete this product?')) {
       try {
-        await axios.delete(`http://localhost:5000/api/products/${id}`);
+        await axios.delete(`/api/products/${id}`);
         showToast('Product deleted');
         fetchProducts();
       } catch (err) {
