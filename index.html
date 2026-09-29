@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>URBAN T-SHIRTS — Trendy • Comfy • Affordable</title>
+  <link rel="icon" href="assets/logo.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Announcement Bar -->
+  <div class="announcement-bar">
+    <p class="announcement-bar__message">🚚 Delivery in 3–4 days • 3 TEES FOR ₹499</p>
+  </div>
+
+  <!-- Header -->
+  <div class="header-wrapper">
+    <header class="header page-width">
+      <div class="header__menu-item--mobile">
+        <button class="header__icon" onclick="toggleMenu()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"></path></svg>
+        </button>
+      </div>
+      
+      <a href="#" class="header__heading">
+        <img src="assets/logo.png" alt="URBAN T-SHIRTS" class="header__heading-logo">
+      </a>
+      
+      <nav class="header__inline-menu">
+        <ul class="list-menu">
+          <li><a href="#shop" class="list-menu__item" onclick="setCategory('All')">Home</a></li>
+          <li><a href="#shop" class="list-menu__item" onclick="setCategory('Anime')">Anime</a></li>
+          <li><a href="#shop" class="list-menu__item" onclick="setCategory('Graphic')">Graphic Tees</a></li>
+          <li><a href="#shop" class="list-menu__item" onclick="setCategory('Streetwear')">Streetwear</a></li>
+        </ul>
+      </nav>
+      
+      <div class="header__icons">
+        <button class="header__icon" title="Wishlist" id="wishlistBtn" onclick="toggleWishlistFilter()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+        </button>
+        <button class="header__icon" onclick="openCart()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+          <div class="cart-count-bubble" id="cartCount">0</div>
+        </button>
+      </div>
+    </header>
+    <!-- Mobile Menu overlay (hidden by default) -->
+    <nav class="nav-links" id="navLinks" style="display:none; flex-direction:column; background:#fff; padding:2rem; position:absolute; width:100%; box-shadow:0 10px 10px rgba(0,0,0,0.1);">
+      <ul class="list-menu" style="flex-direction:column;">
+        <li><a href="#shop" class="list-menu__item" onclick="setCategory('All'); toggleMenu();">Home</a></li>
+        <li><a href="#shop" class="list-menu__item" onclick="setCategory('Anime'); toggleMenu();">Anime</a></li>
+        <li><a href="#shop" class="list-menu__item" onclick="setCategory('Graphic'); toggleMenu();">Graphic Tees</a></li>
+        <li><a href="#shop" class="list-menu__item" onclick="setCategory('Streetwear'); toggleMenu();">Streetwear</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <main id="MainContent">
+    
+    <!-- Hero / Image Banner -->
+    <section class="banner">
+      <div class="banner__media">
+        <img src="assets/goku.jpg" alt="Banner Image">
+      </div>
+      <div class="banner__content">
+        <div class="banner__box">
+          <h2 class="banner__heading">URBAN DROP 01</h2>
+          <div class="banner__text">
+            <p>Premium printed oversized tees made for everyday streetwear. Fresh graphics, easy comfort and prices that make sense.</p>
+          </div>
+          <div class="banner__buttons">
+            <button class="button" onclick="scrollShop()">Shop Now</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Combo Section (styled as an info banner) -->
+    <section class="page-width" style="margin-top: 5rem; margin-bottom: 5rem; text-align: center; background: rgb(var(--color-base-background-2)); padding: 4rem;">
+      <h2 class="title" style="margin-bottom: 2rem;">Pick 3. Pay ₹499.</h2>
+      <p style="margin-bottom: 3rem;">Select any 3 tees, choose your sizes, and pay one simple combo price.</p>
+      <button class="button button--secondary" id="comboBtn" onclick="addCombo()">SELECT 3 TEES (0/3)</button>
+    </section>
+
+    <!-- Featured Collection -->
+    <section id="shop" class="page-width" style="margin-bottom: 8rem;">
+      <div class="title-wrapper">
+        <h2 class="title">Featured Collection</h2>
+      </div>
+      
+      <div class="facets-wrapper">
+        <div class="facets__form">
+          <div class="facet-filters__field">
+            <label class="facet-filters__label" for="search">Search</label>
+            <input type="text" id="search" class="field__input" style="padding: 1rem; width: 200px;" placeholder="Search products...">
+          </div>
+          <div class="facet-filters__field">
+            <label class="facet-filters__label" for="sort">Sort by</label>
+            <select id="sort" class="select__select">
+              <option value="featured">Featured</option>
+              <option value="low">Price, low to high</option>
+              <option value="high">Price, high to low</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      
+      <div class="grid" id="productGrid">
+        <!-- Products injected via JS -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="page-width">
+      <div class="footer__content-top">
+        <div class="footer-block">
+          <h2 class="footer-block__heading">About Us</h2>
+          <div class="footer-block__details-content">
+            <p>URBAN T-SHIRTS brings bold printed designs, comfortable fits and affordable everyday fashion.</p>
+          </div>
+        </div>
+        <div class="footer-block">
+          <h2 class="footer-block__heading">Customer Care</h2>
+          <ul class="footer-block__details-content">
+            <li><a href="https://wa.me/917603871293">WhatsApp: +91 7603871293</a></li>
+            <li><a href="https://wa.me/919952391001">WhatsApp: +91 9952391001</a></li>
+            <li><a href="https://instagram.com/_urban_tshirts">Instagram</a></li>
+          </ul>
+        </div>
+        <div class="footer-block">
+          <h2 class="footer-block__heading">Policies</h2>
+          <ul class="footer-block__details-content">
+            <li>Delivery: 3-4 days</li>
+            <li>Returns: Damaged pieces only</li>
+            <li><a href="admin.html">Admin Panel</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__content-bottom">
+        <p>&copy; 2026 URBAN T-SHIRTS. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Cart Drawer -->
+  <div class="drawer" id="cartDrawer" onclick="closeCart(event)">
+    <div class="drawer__inner" onclick="event.stopPropagation()">
+      <div class="drawer__header">
+        <h2 class="drawer__heading">Your cart</h2>
+        <button class="drawer__close" onclick="closeCart()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"></path></svg>
+        </button>
+      </div>
+      <div class="cart-drawer__items" id="cartItems">
+        <!-- Cart items injected via JS -->
+      </div>
+      <div class="cart-drawer__footer">
+        <div class="totals">
+          <h3 class="totals__subtotal">Subtotal</h3>
+          <p class="totals__total" id="cartTotal">₹0</p>
+        </div>
+        <p style="font-size:1.2rem; color:rgba(18,18,18,0.7); margin-bottom:2rem;">Taxes and shipping calculated at checkout</p>
+        <button class="button button--full-width" onclick="openCheckoutModal()">Check out via WhatsApp</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Checkout Modal -->
+  <div class="modal" id="checkoutModal" onclick="closeCheckout(event)">
+    <div class="modal__content" onclick="event.stopPropagation()">
+      <button class="modal__close" onclick="closeCheckout()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:2.4rem; height:2.4rem;"><path d="M18 6L6 18M6 6l12 12"></path></svg>
+      </button>
+      <h2 class="title" style="margin-bottom: 2rem;">Shipping Details</h2>
+      <form id="checkoutForm" onsubmit="processCheckout(event)">
+        <div class="field">
+          <label class="field__label" for="c_name">Full Name</label>
+          <input class="field__input" type="text" id="c_name" required>
+        </div>
+        <div class="field">
+          <label class="field__label" for="c_phone">Phone</label>
+          <input class="field__input" type="tel" id="c_phone" required pattern="[0-9]{10}">
+        </div>
+        <div class="field">
+          <label class="field__label" for="c_address">Address</label>
+          <textarea class="field__input" id="c_address" required style="resize:vertical; min-height:8rem;"></textarea>
+        </div>
+        <button type="submit" class="button button--full-width">Place Order</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
